@@ -1,7 +1,9 @@
 package personal.vishu.in28minutes.rest.webservices.restfulwebservices.bean;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -9,8 +11,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "All details about the user.")
-public class User {
+@Entity
+public class User
+{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	@Size(min = 2, max = 50, message = "Name should have minimum 2 and maximum 50 characters")
@@ -20,7 +26,10 @@ public class User {
 	@Past(message = "Date of Birth should be of Past Date")
 	@ApiModelProperty(notes = "Birth Date should be in the past.")
 	private Date birthDate;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
+
 	protected User() {}
 	
 	public User(Integer id, String name, Date birthDate) {
@@ -49,10 +58,21 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", birthDate=" + birthDate +
+				'}';
 	}
-	
-	
+
 }
