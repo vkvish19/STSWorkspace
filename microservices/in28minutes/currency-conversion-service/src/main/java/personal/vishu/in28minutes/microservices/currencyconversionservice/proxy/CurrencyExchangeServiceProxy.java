@@ -14,3 +14,6 @@ public interface CurrencyExchangeServiceProxy
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     CurrencyConversionBean retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
 }
+
+// Feign is for interactions between the services
+// Ribbon is for client side load balancing
