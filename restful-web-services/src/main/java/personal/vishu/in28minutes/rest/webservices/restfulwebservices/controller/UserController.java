@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import personal.vishu.in28minutes.rest.webservices.restfulwebservices.bean.User;
 import personal.vishu.in28minutes.rest.webservices.restfulwebservices.dao.UserDaoService;
+import personal.vishu.in28minutes.rest.webservices.restfulwebservices.exception.UserNotCreatedException;
 import personal.vishu.in28minutes.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 
 @RestController
