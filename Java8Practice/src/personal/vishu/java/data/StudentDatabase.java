@@ -2,13 +2,18 @@ package personal.vishu.java.data;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class StudentDatabase {
 
-    public static Supplier<Student> studentSupplier =
-            () -> new Student("Jenny",2,3.8,"female",
-                    Arrays.asList("swimming", "gymnastics","soccer"));
+    public static Supplier<Student> studentSupplier = () -> {
+        Bike bike = new Bike("ABC", "XYZ");
+        Student student = new Student("Jenny",2,3.8,"female", Arrays.asList("swimming", "gymnastics","soccer"));
+        student.setBike(Optional.ofNullable(bike));
+        return student;
+    };
+            
 
     public static List<Student> getAllStudents() {
         Student student1 = new Student("Adam",2,3.6, "male",
